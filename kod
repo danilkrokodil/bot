@@ -1,0 +1,17 @@
+for event in longpoll.listen():
+    if event.type == VkBotEventType.MESSAGE_NEW and event.obj.text:
+        if event.from_chat :
+            counter += 1
+            log(vk, event)
+            log(vk, 'from: ' + str(event.object['from_id']))
+            text = event.obj.text
+            if counter == 20:
+                counter = 0
+                send(vk, event, model.generate())
+                save()
+            elif text == str(a):
+                save()
+                log('saved')
+                exit(0)
+            else:
+                model.parse_string(text)
